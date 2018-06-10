@@ -4,22 +4,162 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <title>Ticket Price Grabber</title>
 
-    <meta name="google-signin-client_id" content="11722166297-nagldl9grii81p2evgfdkmridge8c93r.apps.googleusercontent.com">
+    <!-- //Google Signin -->
+    <meta name="google-signin-client_id" content="11722166297-fiuridm10rcuvem42rvnqhho5qma44t9.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+
 
 </head>
 
 <body>
+
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    hello
+
+    <!-- Side navigation -->
+    <div class="sidenav">
+        <img src="assets/images/tpg.png" id="tpgLogo">
+
+        <a href="index.html">
+            <i class="fa fa-home" id="homeIcon"></i>
+        </a>
+
+        <p id="homeText">Home</p>
+        <a href="favorites.html">
+            <i class="fa fa-star-o" id="starIcon"></i>
+        </a>
+
+        <p id="starText">Favorites</p>
+
+
+
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
+    <br>
+
+    <!-- Cards to store API data -->
+
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+            <h3>Ticket Price Grabber</h3>
+            <hr></hr>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <form class="form-inline mb-2">
+                <div class="form-group">
+
+                    <input type="text" class="form-control" id="artistSearch" placeholder="Search Artist Name">
+
+                </div>
+                <button type="submit" class="btn btn-secondary ml-2" id="search">Search</button>
+                <button type="submit" class="btn btn-secondary ml-2" id="favorites">Add to Favorites</button>
+            </form>
+        </div>
+        <div class="col-md-5">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <div class="card text-center">
+                <div class="card-header">
+                    <img src="assets/images/spotify.png" id="spotifyLogo">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" id="artist">Spotify Section</h5>
+                    <p class="card-text" id="songs">This is a placeholder for the spotify data that we will be bringing in through the API. You can add any
+                        divs neccessary to populate the data within this card.</p>
+
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card text-center">
+                <div class="card-header">
+                    <img src="assets/images/youTube.png" id="youTubeLogo">
+                </div>
+                <div class="card-body" id="youTubeBody">
+                    <h5 class="card-title">Youtube Section</h5>
+                    <!-- <iframe id="ytplayer" type="text/html" width="300" height="300" src="" frameborder="0"></iframe> -->
+                    <!-- <iframe id="ytplayer2" type="text/html" width="300" height="300" src="" frameborder="0"></iframe>
+                    <iframe id="ytplayer3" type="text/html" width="300" height="300" src="" frameborder="0"></iframe> -->
+
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="card text-center">
+                <div class="card-header">
+                    <img src="assets/images/seatGeek.png" id="seatGeekLogo">
+                </div>
+                <div class="card-body" id="seatGeekCard">
+
+
+                    <table class="table" id="ticketHead">
+                        <thead>
+                            <tr>
+                                <th>Venue</th>
+                                <th>Location</th>
+                                <th>Date</th>
+                                <th>Average Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="ticketTable">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>
