@@ -12,7 +12,7 @@ body {
 }
 
 #signOutButton {
-    float: right;
+    margin-left: 100px;
 }
 
 #loginLogo {
