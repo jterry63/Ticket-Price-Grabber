@@ -6,6 +6,9 @@ body {
     display: none;
 }
 
+.g-signin2 {
+    margin-left: 200px;
+}
 
 #loginLogo {
     margin-top: 250px;
