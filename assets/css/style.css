@@ -1,13 +1,15 @@
+body {
+    background-color: #3c4b56;
+}
+
 .application {
     display: none;
 }
 
-.g-signin2 {
-    margin-left: 500px;
-}
 
 #loginLogo {
-    margin-top: 200px;
+    margin-top: 250px;
+    margin-left: 20px;
     width: 300px;
     height: 42px;
 }
