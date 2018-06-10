@@ -2,6 +2,10 @@
     display: none;
 }
 
+.g-signin2 {
+    margin-left: 500px;
+}
+
 /* The sidebar menu */
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
