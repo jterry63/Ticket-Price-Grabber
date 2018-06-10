@@ -15,6 +15,7 @@ var database = firebase.database();
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     $(".g-signin2").css("display", "none");
+    $(".login-screen").css("display", "none");
     $(".application").css("display", "block");
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());

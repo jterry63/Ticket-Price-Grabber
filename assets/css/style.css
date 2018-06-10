@@ -6,6 +6,12 @@
     margin-left: 500px;
 }
 
+#loginLogo {
+    margin-top: 200px;
+    width: 300px;
+    height: 42px;
+}
+
 /* The sidebar menu */
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
