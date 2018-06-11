@@ -22,62 +22,73 @@
 
 <body>
 
-    <!-- Side navigation -->
-    <div class="sidenav">
-        <img src="assets/images/tpg.png" id="tpgLogo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 artist-info2"></div>
+            <div class="col-md-6 artist-information" style="left: -150px;">
+                <iframe class="song-play" src="https://open.spotify.com/embed?uri=spotify:track:2TpxZ7JUBn3uw46aR7qd6V" width="300" height="380"
+                    frameborder="0" allowtransparency="true"></iframe>
+            </div>
+            <marquee class="col-md-4" id="lyrics" direction="up" scrollamount="1">
 
-        <a href="index.html">
-            <i class="fa fa-home" id="homeIcon"></i>
-        </a>
-
-        <p id="homeText">Home</p>
-        <a href="favorites.html">
-            <i class="fa fa-star-o" id="starIcon"></i>
-        </a>
-
-        <p id="starText">Favorites</p>
-
-
-
-        <a href="#"></a>
-        <a href="#"></a>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
-
+            </marquee>
         </div>
-    </div>
+        <!-- Side navigation -->
+        <div class="sidenav">
+            <img src="assets/images/tpg.png" id="tpgLogo">
 
-    <!-- Cards to store API data -->
+            <a href="index.html">
+                <i class="fa fa-home" id="homeIcon"></i>
+            </a>
 
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+            <p id="homeText">Home</p>
+            <a href="favorites.html">
+                <i class="fa fa-star-o" id="starIcon"></i>
+            </a>
 
-            <h3>Favorites</h3>
-            <hr></hr>
+            <p id="starText">Favorites</p>
+
+
+
+            <a href="#"></a>
+            <a href="#"></a>
         </div>
-    </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
 
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="card text-center">
-                <div class="card-header">
-                    Favorites
-                </div>
-                <div class="card-body" id="favoriteBody">
-                    <h5 class="card-title">Favorites</h5>
+            </div>
+        </div>
 
-                </div>
-                <div class="card-footer text-muted">
+        <!-- Cards to store API data -->
 
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+
+                <h3>Favorites</h3>
+                <hr></hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Favorites
+                    </div>
+                    <div class="card-body" id="favoriteBody">
+                        <h5 class="card-title">Favorites</h5>
+
+                    </div>
+                    <div class="card-footer text-muted">
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 
