@@ -78,20 +78,6 @@ $("#favorites").on("click", function (event) {
 
 });
 
-$("#starIcon").on("click", function (event) {
-    event.preventDefault();
-
-    if (userLoggedIn === false) {
-        alert("you must log in first");
-    } else {
-
-    } $("#starIcon").load("https://jterry63.github.io/testGoogle/favorites");
-
-
-
-});
-
-
 
 
 database.ref().on("child_added", function (childSnapshot) {
@@ -258,3 +244,16 @@ function youtubeResponse(artistName) {
         });
 
 }
+
+$("#starIcon").on("click", function (event) {
+    event.preventDefault();
+
+    if (userLoggedIn === false) {
+        alert("you must log in first");
+    } else {
+        window.open("favorites.html", "_self");
+    }
+
+
+
+});
