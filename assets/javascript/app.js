@@ -14,14 +14,15 @@ var database = firebase.database();
 //Google Auth
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    $(".g-signin2").html("<img src=" + userImage + "</img>");
+    var userImage = profile.getImageUrl();
+    $(".g-signin2").html(`<img src=${userImage}</img>`);
     $(".login-screen").css("display", "none");
     $("body").css("background-color", "white");
     $(".application").css("display", "block");
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
-    var userImage = profile.getImageUrl();
+
     console.log(userImage);
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
