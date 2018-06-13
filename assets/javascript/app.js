@@ -81,9 +81,13 @@ $("#favorites").on("click", function (event) {
 $("#starIcon").on("click", function (event) {
     event.preventDefault();
 
-    if (userLoggedIn === false) {
+    if (userLoggedIn === true) {
         alert("you must log in first");
-    }
+    } else {
+
+    } $("#starIcon").load("https://jterry63.github.io/testGoogle/favorites");
+
+
 
 });
 
