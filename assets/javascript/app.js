@@ -14,7 +14,7 @@ var database = firebase.database();
 //Google Auth
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    $(".g-signin2").css("display", "none");
+    $(".g-signin2").html(profile.getImageUrl());
     $(".login-screen").css("display", "none");
     $("body").css("background-color", "white");
     $(".application").css("display", "block");
