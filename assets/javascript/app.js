@@ -249,7 +249,7 @@ $("#starIcon").on("click", function (event) {
     event.preventDefault();
 
     if (userLoggedIn === false) {
-        alert("you must log in first");
+        $("#exampleModal").modal('show');
     } else {
         window.open("favorites.html", "_self");
     }
