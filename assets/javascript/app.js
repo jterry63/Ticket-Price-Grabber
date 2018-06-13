@@ -81,7 +81,7 @@ $("#favorites").on("click", function (event) {
 $("#starIcon").on("click", function (event) {
     event.preventDefault();
 
-    if (userLoggedIn === true) {
+    if (userLoggedIn === false) {
         alert("you must log in first");
     } else {
 
