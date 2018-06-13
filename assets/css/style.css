@@ -1,6 +1,9 @@
 .g-signin2 {
     margin-left: 20px;
 }
+#userImage {
+    border-radius: 50%;
+}
 
 /* The sidebar menu */
 .sidenav {
