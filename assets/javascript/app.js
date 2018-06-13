@@ -15,7 +15,7 @@ var database = firebase.database();
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     var userImage = profile.getImageUrl();
-    $(".g-signin2").html(`<img src=${userImage}</img>`);
+    $(".g-signin2").html(`<img src=${userImage}></img>`);
     $(".login-screen").css("display", "none");
     $("body").css("background-color", "white");
     $(".application").css("display", "block");
