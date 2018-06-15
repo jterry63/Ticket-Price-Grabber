@@ -25,6 +25,7 @@
 </head>
 
 <body>
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -45,22 +46,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="login-screen">
-
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <img src="assets/images/tpg-login.png" id="loginLogo">
-                <img>
-
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            </div>
-            <div class="col-md-4"></div>
-        </div>
-    </div>
-
-
-    <div class="application" style="display: none;"> -->
 
     <!-- Side navigation -->
     <div class="sidenav">
@@ -76,16 +61,12 @@
         </a>
 
         <p id="starText">Favorites</p>
-
-
-
-
-
         <a href="#" onclick="signOut();">
             <i class="fa fa-sign-out" id="signOutIcon"></i>
         </a>
 
         <p id="signOutText">Sign out</p>
+
 
         <a href="#"></a>
         <a href="#"></a>
@@ -94,17 +75,6 @@
 
     <!-- Cards to store API data -->
 
-
-    <!-- <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-
-            <h3>Ticket Price Grabber</h3>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-            <hr></hr>
-        </div>
-    </div> -->
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-8">
@@ -134,13 +104,12 @@
 
                 </div>
                 <button type="submit" class="btn btn-secondary ml-2" id="search">Search</button>
-                <button type="submit" class="btn btn-secondary ml-2" id="favorites">Add to Favorites</button>
+                <button type="submit" class="btn btn-secondary ml-2" style="display: none;" id="favorites">Add to Favorites</button>
             </form>
         </div>
         <div class="col-md-5">
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-md-1"></div>
@@ -157,9 +126,8 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title" id="artist">Spotify Section</h5>
-                    <p class="card-text" id="songs">This is a placeholder for the spotify data that we will be bringing in through the API. You can add any
-                        divs neccessary to populate the data within this card.</p>
-
+                    <p class="card-text" id="songs"></p>
+                    <p class="card-text" id="player"></p>
                 </div>
                 <div class="card-footer text-muted">
 
@@ -217,7 +185,7 @@
         </div>
     </div>
     </div>
-    </div>
+
 
     <!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

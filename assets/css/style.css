@@ -100,9 +100,6 @@ margin-left: 7px;
     color: slategray;
 }
 
-#signOutIcon:hover {
-    color: slategray;
-}
 #seatGeekCard {
     background-color: #3d8ce0;
 }
@@ -133,3 +130,14 @@ margin-left: 7px;
     margin-top: 10px;
 }
 
+/* Fave Image spacing */
+#artistImage{
+    float: left;
+    margin-left: 25%;
+    margin-top: 5%
+}
+#artistName{
+    float: right;
+    margin-right: 50%;
+    margin-top: 5%;
+}

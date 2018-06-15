@@ -8,14 +8,17 @@ var config = {
     messagingSenderId: "34076773600"
 };
 firebase.initializeApp(config);
+
 var database = firebase.database();
 
+var userId = '';
 
 //Google Auth
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     userLoggedIn = true;
     var userImage = profile.getImageUrl();
+    userId = profile.getId();
     $(".g-signin2").html(`<img src=${userImage} id="userImage"></img>`);
 
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -36,6 +39,21 @@ var lookup = "";
 var auth = "";
 var userLoggedIn = false;
 
+// // trying to create url for a favorite click
+$("document").ready(function () {
+    var url = window.location.href;
+    var urlSelections = url.split('?');
+    if (urlSelections.length > 1) {
+        var parameter = urlSelections[1].split('=');
+        if (parameter.length <= 1)
+            return;
+        if (parameter[0] != 'artist')
+            return;
+    }
+    var artistName = parameter[1].replace('+', ' ');
+    getApis(artistName);
+});
+var albumImage = "";
 
 
 //onclick function
@@ -47,12 +65,48 @@ $("#search").on("click", function (event) {
 
     var artistName = $("#artistSearch").val().trim();
 
+    getApis(artistName);
+    $("#favorites").show();
+});
+
+$("#favorites").on("click", function (event) {
+    event.preventDefault();
 
 
-    database.ref().push({
-        artistName: artistName,
+    var favoriteArtist = lookup;
+    var artistImage = albumImage;
+    console.log(favoriteArtist);
+
+    if (favoriteArtist == '')
+        return;
+
+    database.ref('User/' + userId).push({
+        favoriteArtist: favoriteArtist,
         dateAdded: firebase.database.ServerValue.TIMESTAMP,
+        artistImage: artistImage,
+        userId: userId,
     });
+
+});
+
+//Check for login before entering favorites page
+$("#starIcon").on("click", function (event) {
+    event.preventDefault();
+
+    if (userLoggedIn === false) {
+        $("#exampleModal").modal('show');
+    } else {
+        window.open("favorites.html", "_self");
+    }
+
+});
+
+function getApis(artistName) {
+
+    if (artistName === "") {
+        return;
+    }
+
     seatGeek(artistName);
     youtubeResponse(artistName);
     lookup = artistName;
@@ -60,39 +114,7 @@ $("#search").on("click", function (event) {
     getAuth();
 
 
-
-});
-
-$("#favorites").on("click", function (event) {
-    event.preventDefault();
-
-    var favoriteArtist = $("#artistSearch").val().trim();
-
-
-
-    database.ref().push({
-        favoriteArtist: favoriteArtist,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP,
-    });
-
-
-});
-
-
-
-database.ref().on("child_added", function (childSnapshot) {
-
-    if (childSnapshot.val().favoriteArtist) {
-        $("#favoriteBody").append("<div>" + childSnapshot.val().favoriteArtist + "</div>");
-    }
-
-
-
-}, function (errorObject) {
-    console.log("Errors handled: " + errorObject.code);
-});
-
-
+}
 //spotify function
 function getAuth() {
     var settings = {
@@ -137,14 +159,45 @@ function getData() {
     console.log("hello2");
     $.ajax(dataSettings).then(function (searchResults) {
         console.log(searchResults);
+        albumImage = searchResults.tracks.items[0].album.images[1].url;
+        console.log(searchResults.tracks.items[0].album.images[1].url);
+        console.log("Hello 3");
 
-        console.log(searchResults.tracks.items);
+        $('#artist').html(`<h5 class="card-title" id="artistTitle">${lookup}  <hr></hr></h5>`);
+        $('#songs').html(`<div class="card-text" id="button" type="1"></div><hr></hr>`);
+        $('#player').html(`<iframe class="song-play" src="https://open.spotify.com/embed?uri=${searchResults.tracks.items[0].uri}" width="100%" height="350" frameborder="0" allowtransparency="true"></iframe>`);
 
-        $('#artist').html(`<h5 class="card-title">${lookup}</h5>`);
-        $('#songs').html(`<ol class="card-text" id="button" type="1"></ol>`);
-        for (var i = 0; i < searchResults.tracks.items.length; i++) {
-            $('#button').append(`<li><button class="btn btn-light ml-2"><a href="${searchResults.tracks.items[i].preview_url}" target="_blank">${searchResults.tracks.items[i].name}</a></buttion></li>`);
-        }
+        // for (var i = 0; i < searchResults.tracks.items.length; i++) {
+        //     $('#button').append(`<button class="btn btn-light ml-2" id="songButton" data-id="${searchResults.tracks.items[i].uri}">${searchResults.tracks.items[i].name}</buttion>`);
+        // }
+        $('#button').append(`<button class="btn btn-light ml-2" id="buttonOne" data-id="${searchResults.tracks.items[0].uri}">${searchResults.tracks.items[0].name}</buttion>`);
+        $('#button').append(`<button class="btn btn-light ml-2" id="buttonTwo" data-id="${searchResults.tracks.items[1].uri}">${searchResults.tracks.items[1].name}</buttion>`);
+        $('#button').append(`<button class="btn btn-light ml-2" id="buttonThree" data-id="${searchResults.tracks.items[2].uri}">${searchResults.tracks.items[2].name}</buttion>`);
+        $('#button').append(`<button class="btn btn-light ml-2" id="buttonFour" data-id="${searchResults.tracks.items[3].uri}">${searchResults.tracks.items[3].name}</buttion>`);
+        $('#button').append(`<button class="btn btn-light ml-2" id="buttonFive" data-id="${searchResults.tracks.items[4].uri}">${searchResults.tracks.items[4].name}</buttion>`);
+
+        $("#buttonOne").on("click", function (event) {
+            event.preventDefault();
+            $('#player').html(`<ol class="card-text" id="button" type="1"></ol><hr></hr> <iframe class="song-play" src="https://open.spotify.com/embed?uri=${searchResults.tracks.items[0].uri}" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>`);
+        })
+        $("#buttonTwo").on("click", function (event) {
+            event.preventDefault();
+            $('#player').html(`<ol class="card-text" id="button" type="1"></ol><hr></hr> <iframe class="song-play" src="https://open.spotify.com/embed?uri=${searchResults.tracks.items[1].uri}" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>`);
+        })
+        $("#buttonThree").on("click", function (event) {
+            event.preventDefault();
+            $('#player').html(`<ol class="card-text" id="button" type="1"></ol><hr></hr> <iframe class="song-play" src="https://open.spotify.com/embed?uri=${searchResults.tracks.items[2].uri}" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>`);
+        })
+        $("#buttonFour").on("click", function (event) {
+            event.preventDefault();
+            $('#player').html(`<ol class="card-text" id="button" type="1"></ol><hr></hr> <iframe class="song-play" src="https://open.spotify.com/embed?uri=${searchResults.tracks.items[3].uri}" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>`);
+        })
+        $("#buttonFive").on("click", function (event) {
+            event.preventDefault();
+            $('#player').html(`<ol class="card-text" id="button" type="1"></ol><hr></hr> <iframe class="song-play" src="https://open.spotify.com/embed?uri=${searchResults.tracks.items[4].uri}" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>`);
+        })
+
+
     }).fail(async function (jqXHR, textStatus, errorThrown) {
         alert("Request failed: " + textStatus);
         console.log(errorThrown, jqXHR);
@@ -156,6 +209,9 @@ function getData() {
     })
 
 };
+
+
+
 
 //SeatGeek Section
 function seatGeek(artistName) {
@@ -215,7 +271,7 @@ function youtubeResponse(artistName) {
         .then(function (response) {
             console.log(response);
             if (response == null || response.items.length < 1) {
-                $("#youTubeBody").html("you suck!"); // change html to display a message showing no videos for the artist searched.
+                $("#youTubeBody").html("No video results for your search.");
                 return;
             }
             $("#youTubeBody").empty();
@@ -243,17 +299,6 @@ function youtubeResponse(artistName) {
 
         });
 
+
+
 }
-
-$("#starIcon").on("click", function (event) {
-    event.preventDefault();
-
-    if (userLoggedIn === false) {
-        $("#exampleModal").modal('show');
-    } else {
-        window.open("favorites.html", "_self");
-    }
-
-
-
-});

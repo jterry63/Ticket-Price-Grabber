@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Favorites</title>
 
+    <meta name="google-signin-client_id" content="11722166297-0kgm1mvm54hj7ea55l1erg8js1ahkh13.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -22,78 +27,103 @@
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2 artist-info2"></div>
-            <div class="col-md-6 artist-information" style="left: -150px;">
-                <iframe class="song-play" src="https://open.spotify.com/embed?uri=spotify:track:2TpxZ7JUBn3uw46aR7qd6V" width="300" height="380"
-                    frameborder="0" allowtransparency="true"></iframe>
-            </div>
-            <marquee class="col-md-4" id="lyrics" direction="up" scrollamount="1">
+    <!-- Side navigation -->
+    <div class="sidenav">
+        <img src="assets/images/tpg.png" id="tpgLogo">
 
-            </marquee>
+        <a href="index.html">
+            <i class="fa fa-home" id="homeIcon"></i>
+        </a>
+
+        <p id="homeText">Home</p>
+        <a href="favorites.html">
+            <i class="fa fa-star-o" id="starIcon"></i>
+        </a>
+
+        <p id="starText">Favorites</p>
+        <a href="#" onclick="signOut();">
+            <i class="fa fa-sign-out" id="signOutIcon"></i>
+        </a>
+
+        <p id="signOutText">Sign out</p>
+
+
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+
         </div>
-        <!-- Side navigation -->
-        <div class="sidenav">
-            <img src="assets/images/tpg.png" id="tpgLogo">
+    </div>
 
-            <a href="index.html">
-                <i class="fa fa-home" id="homeIcon"></i>
-            </a>
+    <!-- Cards to store API data -->
 
-            <p id="homeText">Home</p>
-            <a href="favorites.html">
-                <i class="fa fa-star-o" id="starIcon"></i>
-            </a>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
 
-            <p id="starText">Favorites</p>
-
-
-
-            <a href="#"></a>
-            <a href="#"></a>
+            <h3>Favorites</h3>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-
-            </div>
+        <div class="col-md-1">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
+    </div>
 
-        <!-- Cards to store API data -->
-
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-
-                <h3>Favorites</h3>
-                <hr></hr>
-            </div>
+    <div class="row">
+        <div class="col-md-1">
         </div>
+        <div class="col-md-10">
+            <hr></hr>
+        </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div class="card text-center">
-                    <div class="card-header">
-                        Favorites
-                    </div>
-                    <div class="card-body" id="favoriteBody">
-                        <h5 class="card-title">Favorites</h5>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="card text-center">
+                <div class="card-header">
+                    Favorites
+                </div>
+                <div class="card-body" id="favoriteBody">
+                    <table class="table justify-content-center">
+                        <tbody id="faveTable">
+                            <!-- <tr>
+                                <td>
+                                    <img src="https://i.scdn.co/image/39ac4904a22405fcf66d9ab8dea354d5b95a64f2" alt="image goes here">
+                                </td>
+                                <td></td>
+                                <td>
+                                    <h2>Green Day</h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="https://i.scdn.co/image/2e244b9284d317b2019bb9fd44d9a086210d4974" alt="image goes here duh">
+                                </td>
+                                <td></td>
+                                <td>
+                                    <h2>Halsey</h2>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                    <!-- <h5 class="card-title">Favorites</h5>
 
-                    </div>
-                    <div class="card-footer text-muted">
+                </div>
+                <div class="card-footer text-muted">
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
 
     <!-- JavaScript -->
-    <script src="assets/javascript/app.js"></script>
+                    <script src="assets/javascript/favorites.js"></script>
 </body>
 
 </html>
